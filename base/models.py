@@ -89,17 +89,16 @@ class LocalSettings(models.Model):
     mail_passwd = models.CharField(blank=False, verbose_name="Mot de passe pour l'envoi des mails.",
                                    default="xxx", max_length=100)
 
+    def __str__(self):
+        return "Réglages divers"
+
     class Meta:
         verbose_name = "Réglages divers"
         verbose_name_plural = "Réglages divers"
 
 
 def get_local_settings():
-    localsettings = LocalSettings.objects.first()
-    if localsettings is None:
-        localsettings = LocalSettings.objects.create()
-    return localsettings
-
+    return LocalSettings.objects.first()
 
 class Category(models.Model):
     name = models.CharField(max_length=200, verbose_name="Nom")
